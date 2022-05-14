@@ -1,0 +1,24 @@
+*,*::before,*::after{
+    box-sizing:border-box;
+}
+:root{
+    font-size:62.5%;
+    --square-dim:5rem;
+    --square-blank:rgb(128, 128, 128);
+    --square-safe:rgb(46, 133, 46);
+    --square-caution:rgb(253, 197, 43);
+}
+.gameboard{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    grid-template-columns:repeat(10,auto);
+    justify-content: center;
+    align-content: center;
+}
+.gamesquare{
+    height:var(--square-dim);
+    width:var(--square-dim);
+    background-color: var(--square-blank);
+    border:1px white solid;
+}

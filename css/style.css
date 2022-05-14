@@ -1,0 +1,150 @@
+:root{
+    font-size:62.5%;
+    --gamesquare-dim:15rem;
+    --marker-dim:calc(var(--gamesquare-dim)*.8);
+    --main-color:rgb(197, 125, 125);
+}
+
+*,*::after,*::before{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+}
+
+.gameboard{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    grid-template-columns: repeat(3,auto);
+    justify-content: center;
+    align-content: center;
+    background-color:var(--main-color);
+}
+
+.gamesquare{
+    width:var(--gamesquare-dim);
+    height:var(--gamesquare-dim);
+    /* background-color:rgba(0, 0, 255, 0.356); */
+    border:2px solid black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+}
+.gamesquare.x,
+.gamesquare.o{
+    cursor:not-allowed;
+}
+
+.gamesquare:nth-child(1),
+.gamesquare:nth-child(2),
+.gamesquare:nth-child(3){
+    border-top:none;
+}
+.gamesquare:nth-child(3n+1){
+    border-left:none;
+}
+.gamesquare:nth-child(3n){
+    border-right:none;
+}
+.gamesquare:nth-child(7),
+.gamesquare:nth-child(8),
+.gamesquare:nth-child(9){
+    border-bottom:none;
+}
+
+.gamesquare.x{
+    /* background-color:red; */
+}
+
+/* rendering x */
+.gamesquare.x::before,
+.gamesquare.x::after,
+.gameboard.x .gamesquare:not(.x):not(.o):hover::before,
+.gameboard.x .gamesquare:not(.x):not(.o):hover::after{
+    content:'';
+    width:calc(var(--gamesquare-dim)*.15);
+    height:var(--gamesquare-dim);
+    background-color:black;
+}
+.gamesquare.x::before,
+.gameboard.x .gamesquare:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+    position:relative;
+    left:1rem;
+}
+.gamesquare.x::after,
+.gameboard.x .gamesquare:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+    position:relative;
+    right:1rem;
+}
+
+/* rendering symbol hover on player turn */
+.gameboard.x .gamesquare:not(.x):not(.o):hover::before,
+.gameboard.x .gamesquare:not(.x):not(.o):hover::after{
+    background-color:rgb(119, 83, 83);
+}
+
+
+/* rendering o */
+.gamesquare.o::before,
+.gamesquare.o::after,
+.gameboard.o .gamesquare:not(.x):not(.o):hover::before,
+.gameboard.o .gamesquare:not(.x):not(.o):hover::after{
+    content:'';
+    border-radius:100%;
+}
+.gamesquare.o::before,
+.gameboard.o .gamesquare:not(.x):not(.o):hover::before{
+    width:calc(var(--gamesquare-dim)*.85);
+    height:calc(var(--gamesquare-dim)*.85);
+    background-color:black;
+}
+.gamesquare.o::after,
+.gameboard.o .gamesquare:not(.x):not(.o):hover::after{
+    width:calc(var(--gamesquare-dim)*.6);
+    height:calc(var(--gamesquare-dim)*.6);
+    background-color: var(--main-color);
+    position:absolute;
+}
+
+/* rendering symbol hover on player turn */
+.gameboard.o .gamesquare:not(.x):not(.o):hover::before{
+    background-color:rgb(119, 83, 83);
+}
+
+.win-message{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(0, 0, 0, 0.514);
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 5rem;
+    flex-direction:column;
+}
+.win-message.show{
+    display:flex;
+}
+
+.win-message button{
+    font-size:3rem;
+    background-color:white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor:pointer;
+}
+
+.win-message button:hover{
+    background-color:black;
+    border-color:white;
+    color:white;
+}
+
